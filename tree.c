@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef struct node {
         struct node *left;
         struct node *right;
-        char *label[32];
+        char label[32];
     } Node;
 
 int main(){
