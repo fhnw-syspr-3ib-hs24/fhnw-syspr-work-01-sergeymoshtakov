@@ -6,35 +6,35 @@
 typedef struct node {
         struct node *left;
         struct node *right;
-        char *label;
+        char label[32];
     } Node;
 
 int main(){
-    struct node rln;
-    rln.label = "right left node";
-    rln.left = NULL;
-    rln.right = NULL;
+    struct node *rln = malloc(sizeof(struct node));
+    strcpy(rln->label, "right left node");
+    rln->left = NULL;
+    rln->right = NULL;
 
-    struct node ln;
-    ln.label = "left node";
-    ln.left = NULL;
-    ln.right = NULL;
+    struct node *ln = malloc(sizeof(struct node));
+    strcpy(ln->label, "left node");
+    ln->left = NULL;
+    ln->right = NULL;
 
-    struct node rn;
-    rn.label = "right node";
-    rn.left = &rln;
-    rn.right = NULL;
+    struct node *rn = malloc(sizeof(struct node));
+    strcpy(rn->label, "right node");
+    rn->left = rln;
+    rn->right = NULL;
 
-    struct node n;
-    n.label = "root";
-    n.left = &ln;
-    n.right = &rn;
+    struct node *n = malloc(sizeof(struct node));
+    strcpy(n->label, "root");
+    n->left = ln;
+    n->right = rn;
 
-    struct node *root = &n;
+    struct node *root = n;
 
-    assert(root->left == &ln);
-    assert(root->right == &rn);
-    assert(root->right->left == &rln);
+    assert(root->left == ln);
+    assert(root->right == rn);
+    assert(root->right->left == rln);
     assert(strlen(root->label)<32);
 
     // Node *node1 = malloc(sizeof(Node));
